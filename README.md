@@ -9,6 +9,4 @@
 ### Ferramentas e Tecnologias
 
 - Java
-- MySQL
 - Eclipse
-- Workbench
