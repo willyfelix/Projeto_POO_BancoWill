@@ -24,5 +24,8 @@ public abstract interface IConta {
 
 	public Integer getNumeroConta();
 	
+	public void imprimirExtratoConta();
+
+	
 }
 

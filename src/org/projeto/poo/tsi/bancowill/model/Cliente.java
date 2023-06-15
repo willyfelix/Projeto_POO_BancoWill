@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import org.projeto.poo.tsi.bancowill.model.IConta;
 import org.projeto.poo.tsi.bancowill.persistencia.PersistenciaEmArquivo;
 
 public class Cliente implements Serializable {
@@ -63,6 +62,7 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
+	
 
 	public void adicionarConta(IConta c) {
 
@@ -110,6 +110,10 @@ public class Cliente implements Serializable {
 
 		System.out.print("Balanco entre contas: RS" + ValorSaldo);
 		return ValorSaldo;
+	}
+
+	public List<IConta> getContas() {
+		return contas;
 	}
 
 }

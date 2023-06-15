@@ -52,6 +52,18 @@ public class PersistenciaEmArquivo implements Serializable {
 			return null;
 	}
 
+	public Cliente removerClientePorCPF(String cpf) {
+		Cliente c = new Cliente();
+		c.setCpf(cpf);
+		if (cadastroClientes.contains(c)) {
+			int index = cadastroClientes.indexOf(c);
+			c = cadastroClientes.remove(index);
+			this.salvarDadosEmArquivo();
+			return c;
+		} else
+			return null;
+	}
+
 	public void atualizarClienteCadastro(Cliente c) {
 		if (cadastroClientes.contains(c)) {
 			int index = cadastroClientes.indexOf(c);
