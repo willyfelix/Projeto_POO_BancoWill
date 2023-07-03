@@ -1,18 +1,38 @@
 package org.projeto.poo.tsi.bancowill.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import org.hibernate.annotations.NaturalId;
 import org.projeto.poo.tsi.bancowill.persistencia.PersistenciaEmArquivo;
 
+@Entity
+@Table(name="clientes")
 public class Cliente implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	
+	@NaturalId
+	@Column(name = "cpf", nullable = false)
 	String cpf;
+	
+	@Column
 	String nome;
-
+	
+	@Transient
 	private List<IConta> contas;
 	
 	public Cliente() {

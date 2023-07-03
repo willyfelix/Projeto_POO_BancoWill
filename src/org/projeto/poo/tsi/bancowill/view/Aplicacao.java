@@ -1,24 +1,26 @@
 package org.projeto.poo.tsi.bancowill.view;
 
 import java.math.BigDecimal;
+
+import org.projeto.poo.tsi.bancowill.dao.ClienteDAO;
 import org.projeto.poo.tsi.bancowill.model.Cliente;
 import org.projeto.poo.tsi.bancowill.model.Conta;
 import org.projeto.poo.tsi.bancowill.model.IConta;
-import org.projeto.poo.tsi.bancowill.persistencia.PersistenciaEmArquivo;
 
 import java.util.Scanner;
 
 public class Aplicacao {
 
 	public static void main(String[] args) {
-		PersistenciaEmArquivo DAO = PersistenciaEmArquivo.getInstance();
+		ClienteDAO DAO = ClienteDAO.getInstance();
 		Scanner scanner = new Scanner(System.in);
 
 		while (true) {
 			System.out.println("Bem-vindo ao Banco Will! O que você gostaria de fazer?");
 			System.out.println("1. Cadastrar novo cliente");
 			System.out.println("2. Selecionar cliente existente");
-			System.out.println("3. Sair");
+			System.out.println("3. Listar clientes");
+			System.out.println("4. Sair");
 
 			int opcao = scanner.nextInt();
 			scanner.nextLine();
@@ -64,7 +66,7 @@ public class Aplicacao {
 				case 1:
 					Conta conta = new Conta();
 					cliente.adicionarConta(conta);
-					PersistenciaEmArquivo.getInstance().atualizarClienteCadastro(cliente);
+					DAO.atualizar(cliente);
 					System.out.println("Conta criada com sucesso!");
 					break;
 
@@ -85,7 +87,7 @@ public class Aplicacao {
 						System.out.println("Insira o valor da quantia a ser depositada: ");
 						BigDecimal quantia = scanner.nextBigDecimal();
 						contaLocalizada.depositar(quantia);
-						PersistenciaEmArquivo.getInstance().atualizarClienteCadastro(cliente);
+						DAO.atualizar(cliente);
 					}
 					break;
 				case 4:
@@ -96,7 +98,7 @@ public class Aplicacao {
 						System.out.println("Insira o valor da quantia a ser depositada: ");
 						BigDecimal quantia = scanner.nextBigDecimal();
 						contaSaque.sacar(quantia);
-						PersistenciaEmArquivo.getInstance().atualizarClienteCadastro(cliente);
+						DAO.atualizar(cliente);
 					}
 					break;
 				
@@ -111,7 +113,7 @@ public class Aplicacao {
 						System.out.println("Insira o valor da quantia a ser transferido: ");
 						BigDecimal quantia = scanner.nextBigDecimal();
 						contaSaida.transferir(contaDestino, quantia);
-						PersistenciaEmArquivo.getInstance().atualizarClienteCadastro(cliente);
+						DAO.atualizar(cliente);
 					}
 					
 					break;
@@ -148,7 +150,12 @@ public class Aplicacao {
 					break;
 				}
 				break;
+				
 			case 3:
+				System.out.println();
+			
+				break;
+			case 4:
 				System.out.println("Até logo!");
 				System.exit(0);
 
