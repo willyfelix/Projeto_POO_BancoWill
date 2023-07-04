@@ -1,5 +1,10 @@
 package org.projeto.poo.tsi.bancowill.dao;
 
+import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -27,6 +32,14 @@ public class ClienteDAO {
 		return instance;
 	}
 	
+	public List<Cliente> listarClientes() {
+	    Session session = factory.openSession();
+	    CriteriaBuilder builder = session.getCriteriaBuilder();
+	    CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
+	    criteria.from(Cliente.class);
+	    List<Cliente> data = session.createQuery(criteria).getResultList();
+	    return data;
+	}
 		
 	public void salvarCliente(Cliente cliente) {
 		

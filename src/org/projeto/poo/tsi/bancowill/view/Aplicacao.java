@@ -152,8 +152,7 @@ public class Aplicacao {
 				break;
 				
 			case 3:
-				System.out.println();
-			
+				DAO.listarClientes();
 				break;
 			case 4:
 				System.out.println("Até logo!");
